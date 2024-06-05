@@ -103,14 +103,32 @@ console.log(`Student with the highest average marks: ${highestAverageStudent}`);
 // [ 20, 4, -10, 4, 11, 20, 4, 2]; // 4
 
 
-// I couldn't figure this question out.  I know you could possible use map but looking things up online they are suggesting we use things i // do not believe we've gone over yet?  Max occurrences and most frequent element????  
-// Yeah i didn't even know where to begin with this one.  I think we could start the function off like:
+//1- use the array given as an example and set a variable to it.
+const occurenceArr = [20, 4, -10, 4, 11, 20, 4, 2];
+// create the function that we're going to call later.
+function mostOccurence(arr) {
+    const frequent = arr.reduce((map, num) => {  //using one of the HOF that was requested i think reduce here helps and the arrow function?
+        map.set(num, (map.get(num) || 0) + 1);   // Had to look up an example where this would work.  I need a bit more help understanding this
+        return map;     // Had to look up an example where this would work.  I need a bit more help understanding this
+    }, new Map());      // Had to look up an example where this would work.  I need a bit more help understanding this
 
-function findMostFrequentElement(arr) {
-    const frequencyNum = new Map();
+//setting the counter to 0 and placing it in a variable where we're going to use in a loop.
+    let maxOccurrences = 0;
+    let mostOccurence;
+
+//loop for both the number and the count
+    for (const [num, count] of frequent) {
+        if (count > maxOccurrences) {
+            maxOccurrences = count;
+            mostOccurence = num;
+        }
+    }
+//return the number that has the most occurances here.
+    return mostOccurence;
 }
-
-// but then where to go from here?  create a loop of some sort for an array of items that you can intake?  I was so lost.
+// setting the function to a variable to call it in a console log
+const mostFrequent = mostOccurence(occurenceArr);
+console.log(`The most frequent number is: ${mostFrequent}`);
 
 
 
@@ -122,11 +140,29 @@ function findMostFrequentElement(arr) {
 // [20, 20, 11, 4, 11, 20, 2, 4]
 
 
-// Same for question 5.  It would be similar to the question 4.  Unfortunately i saw the answer after i attempted it and i only got as far // as question 4 before looking it up.  I did not understand the solution so i will not be adding it as an answer.  
+//creating the array and variable for it
+const prabhsArr = [20, 20, 11, 4, 11, 20, 2, 4];
+// creating the function that will help with finding the unique number.
+function unique(arr) {
+    const howManyTimes = arr.reduce((map, num) => {
+        map.set(num, (map.get(num) || 0) + 1);  // similar to question 4 Had to look up an example where this would work.  I need a bit more help understanding this
+        return map;    // similar to question 4 Had to look up an example where this would work.  I need a bit more help understanding this
+    }, new Map());    // similar to question 4 Had to look up an example where this would work.  I need a bit more help understanding this
 
-function findUniqueNumber(arr) {
-    const uniqueNum = new Map();
+// like question 4 setting the loop to count the number and keep the count.
+    for (const [num, count] of howManyTimes) {
+        if (count === 1) {
+            return num;
+        } 
+    }
+    //but what if there's no unique number in the array?  setting a message to cover for that.
+    return "No unique number found in the array.";
 }
+
+//just need to set the variable for the function and then call it in console.log
+const uniqueNumber = unique(prabhsArr);
+console.log(`The unique number is: ${uniqueNumber}`);
+
 
 
 
